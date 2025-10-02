@@ -1,8 +1,15 @@
+# git checkout --orphan gh-pages
+# git reset --hard
+# echo > .nojekyll   # GitHub의 Jekyll 처리 비활성화(권장)
+# git commit -m "init pages"
+# git push -u origin gh-pages
+# git checkout master
+
 git worktree add --force ../_adgjl002_deploy gh-pages
-rsync -av --delete site/ ../_adgjl002_deploy/docs
-cd ../_adgjl002_deploy/docs
+rsync -av --delete site/ ../_adgjl002_deploy
+cd ../_adgjl002_deploy
 touch .nojekyll
 git add --all
 git commit -m "deploy: $(date +'%Y-%m-%d %H:%M:%S')"
 git push
-git worktree remove ../
+git worktree remove /
